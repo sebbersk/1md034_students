@@ -1,0 +1,71 @@
+
+body {
+    font-family: "Courier New" ;
+    font-size: 32;
+
+}
+
+h1 {
+  color: black;
+  position: absolute;
+  padding: 130px;
+  font-size: 52px;
+}
+#header{
+    margin: 20px;
+    height: 300px;
+    overflow: hidden;
+
+}
+#headerPic{
+  opacity: 0.35;
+  width: 100%;
+  height: auto;
+}
+.ingredient {
+    font-weight: bold;
+}
+#burgers {
+  color:white;
+  background-color: black;
+  margin: 20px;
+  padding-top: 3px;
+  padding-left: 10px;
+  border: 3px dashed white;
+}
+
+button{
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  border: 2px solid #555555;
+}
+button:hover {
+    cursor: pointer;
+    background-color: green;
+}
+table {
+ /*margin-left:auto;  /* To center table , source https://www.granneman.com/webdev/coding/css/centertables */
+ /*margin-right:auto;*/
+ width: 100%;
+}
+td,th{
+  text-align: center;
+}
+
+#Contact{
+  margin: 20px;
+  padding-top: 3px;
+  padding-left: 10px;
+  border: 3px dashed black;
+}
+
+.wrapper {
+     display: grid;
+     grid-gap: 300px;
+     grid-template-columns: 200px 200px 200px;
+     text-align: center;
+     
+     background-color: black;
+     color: white;
+}
