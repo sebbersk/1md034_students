@@ -1,7 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
     <head>
         <link rel="stylesheet" href="css/style.css">
+        <script type="text/javascript" src="js/menu.js"></script>
+        <script src="https://vuejs.org/js/vue.js"defer></script>
+        <script src="js/js_script.js"defer></script>
+        <script src="js/vue_script.js"defer>r</script>
         <title>Page title shown in window title</title>
         <meta charset="utf-8"/>
 
@@ -13,38 +19,104 @@
           <img src="https://www.freewebheaders.com/wordpress/wp-content/gallery/food/popular-food-meal-website-header.jpg" id="headerPic" alt="Header pic" title="Header pic">
         </section>
 
-          <section id = "burgers">
+         <section id = "burgers">
           <h2> Select Burger</h2>
           <p> This is where you execute burger selection</p>
-          <div class="wrapper">
-            <div class="firstBurger">First Burger
-              <div> <img src="https://www.seriouseats.com/recipes/images/2015/07/20150702-sous-vide-hamburger-anova-primary.jpg" alt="Test burger" title="First burger" width="300">
+         <div class="wrapper">
+            <div><span v-bind:style="{fontWeight:weight}">{{Burger1}}</span>
+              <div> <img v-bind:src="fstBurgerImg" alt="Test burger" title="American steakhouse" width="300">
                 <ul>
-              <li> <span class= "ingredient">Gluten</span> free</li>
-              <li> Contains <span class= "ingredient">pickles</span></li>
+              <li>
+                {{b1Calories}}
+                </li>
+                <li v-if="b1Gluten">
+                  Contains <span v-bind:style="{fontWeight:weight}"> Gluten</span>
+                </li>
+                <li v-if="b1Lactose">
+                  Contains <span v-bind:style="{fontWeight:weight}"> Lactose</span>
+                </li>
+
             </ul>
+            <input type="checkbox" id="b1" value="American steakhouse" name="burger">
+            <label for="American steakhouse">Add burger</label>
           </div>
-            </div>
-            <div class="secondBurger">Second Burger
-            <div> <img src="https://cdn.arstechnica.net/wp-content/uploads/2018/08/IF-Burger-800x603.jpg" alt="Test burger 2" title="Second burger" width="300">
+        </div>
+            <div><span v-bind:style="{fontWeight:weight}">{{Burger2}}</span>
+            <div> <img v-bind:src="sndBurgerImg" alt="Test burger 2" title="Cheese burger" width="300">
               <ul>
-            <li> <span class= "ingredient">Lactose</span> free</li>
-            <li> Could be <span class= "ingredient">Spicy</span></li>
+                <li>
+                  {{b2Calories}}
+                  </li>
+                  <li v-if="b2Gluten">
+                    Contains <span v-bind:style="{fontWeight:weight}"> Gluten</span>
+                  </li>
+                  <li v-if="b2Lactose">
+                    Contains <span v-bind:style="{fontWeight:weight}"> Lactose</span>
+                  </li>
           </ul>
+          <input type="checkbox" id="b2" value="Cheese burger" name="burger">
+          <label for="Cheese burger">Add burger</label>
         </div>
             </div>
-            <div class="thirdBurger">Third Burger
-              <div><img src="https://www.checkers.com/wp-content/uploads/2017/03/Bacon-Roadhouse-V1-RGB.jpg" alt="Test burger 3" title="Third burger" width="300">
+            <div><span v-bind:style="{fontWeight:weight}">{{Burger3}}</span>
+              <div><img v-bind:src="trdBurgerImg" alt="Test burger 3" title="Onion and bacon burger" width="300">
                 <ul>
-              <li> Contains <span class= "ingredient">Gluten</span></li>
-              <li> <span class= "ingredient">Lactose</span> free</li>
-              <li> Contains <span class= "ingredient">bacon</span></li>
+                  <li>
+                    {{b3Calories}}
+                    </li>
+                    <li v-if="b3Gluten">
+                      Contains <span v-bind:style="{fontWeight:weight}"> Gluten</span>
+                    </li>
+                    <li v-if="b3Lactose">
+                      Contains <span v-bind:style="{fontWeight:weight}"> Lactose</span>
+                    </li>
+            </ul>
+            <input type="checkbox" id="b3" value="Onion and bacon burger" name="burger">
+            <label for="Onion and bacon burger">Add burger</label>
+          </div>
+        </div>
+          </div>
+          <!--  <div id="myIDE">
+
+          <h3>
+            {{Burger1}}
+            <div>
+              <img v-bind:src="fstBurgerImg" width="300">
+              <ul>
+                <li v-for="burger in burger1Info">
+                  {{ burger.info }}
+                </li>
+              </ul>
+            </div>
+          </h3>
+          <h3>
+            {{Burger2}}
+            <div>
+            <img v-bind:src="sndBurgerImg" width="300">
+            <ul>
+              <li v-for="burger in burger2Info">
+                {{ burger.info }}
+              </li>
             </ul>
           </div>
-            </div>
-            </div>
+          </h3>
+          <h3>
+            {{Burger3}}
+            <div>
+            <img v-bind:src="trdBurgerImg" width="300">
+            <ul>
+              <li v-for="burger in burger3Info">
+                {{ burger.info }}
+              </li>
+            </ul>
+          </div>
+        </h3>
+      </div>-->
+
 
         </section>
+
+
         <section id="Contact">
           <h2> Customer information</h2>
           <p> This is where you provide neccesary information</p>
@@ -85,11 +157,23 @@
 
         </form>
         </section>
-        <button type="submit"><img src="https://previews.123rf.com/images/yupiramos/yupiramos1510/yupiramos151004414/46356490-food-delivery-design-vector-illustration-eps10-graphic.jpg" width= "50"> Place your order</button>
+        <div id="orderID">
+        <button v-on:click="markDone()" type="submit"><img src="https://previews.123rf.com/images/yupiramos/yupiramos1510/yupiramos151004414/46356490-food-delivery-design-vector-illustration-eps10-graphic.jpg" width= "50"> Place your order</button>
+            <hr class="ord" v-if="orderSended">
+            <h3 class="ord" v-if="orderSended"> Order Information </h3>
 
+              <p class="ord" v-for="o in oInfo">
+                {{o}}
+              </p>
+
+          </hr>
+        </div>
         </main>
           <footer>
+            <hr>
             <p>© 2018 BurgersOnline</p>
+          </hr>
             </footer>
+
         </body>
 </html>
